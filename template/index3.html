@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyage - Your Next Adventure Awaits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ice-cold': '#a0d2eb',
+                        'freeze-purple': '#e5eaf5',
+                        'medium-purple': '#d0bdf4',
+                        'purple-pain': '#8458B3',
+                        'heavy-purple': '#a28089',
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8fafc;
+        }
+        .parallax-container {
+            height: 70vh;
+            overflow: hidden;
+            position: relative;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .parallax-bg {
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            will-change: transform;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            background-color: #f8fafc;
+        }
+        .btn-hover {
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .link-hover {
+            position: relative;
+            transition: color 0.3s ease-in-out;
+        }
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #8458B3;
+            transition: width 0.3s ease-in-out;
+        }
+        .link-hover:hover::after {
+            width: 100%;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-purple-pain link-hover">Voyage</a>
+            <div class="hidden lg:flex items-center space-x-8 text-lg">
+                <a href="#home" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Home</a>
+                <a href="#tours" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Tours</a>
+                <a href="#destinations" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Destinations</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Testimonials</a>
+                <a href="#featured" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Featured</a>
+                <a href="#blog" class="text-gray-600 hover:text-purple-pain link-hover transition duration-300">Blog</a>
+            </div>
+            <a href="#" class="hidden lg:inline-block bg-purple-pain text-white font-semibold px-6 py-2 rounded-full hover:bg-heavy-purple btn-hover transition duration-300">Book Now</a>
+            <button id="mobile-menu-button" class="lg:hidden text-purple-pain hover:text-heavy-purple focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white py-4">
+            <a href="#home" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Home</a>
+            <a href="#tours" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Tours</a>
+            <a href="#destinations" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Destinations</a>
+            <a href="#testimonials" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Testimonials</a>
+            <a href="#featured" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Featured</a>
+            <a href="#blog" class="block text-center py-2 text-gray-600 hover:bg-freeze-purple link-hover">Blog</a>
+            <div class="mt-4 text-center">
+                <a href="#" class="inline-block bg-purple-pain text-white font-semibold px-6 py-2 rounded-full hover:bg-heavy-purple transition duration-300 btn-hover">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Parallax -->
+        <section id="home" class="parallax-container flex items-center justify-center text-center text-white">
+            <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Tower Bridge in London" class="parallax-bg">
+            <div class="relative z-10 bg-black/40 p-8 rounded-lg max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 fade-in">Find Your Perfect Adventure</h1>
+                <p class="text-lg md:text-xl mb-8 fade-in">Discover breathtaking destinations and create unforgettable memories with Voyage.</p>
+                <form class="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-2xl max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4">
+                    <input type="text" placeholder="Destination, e.g. 'Paris'" class="w-full md:w-1/2 px-4 py-3 text-gray-800 rounded-md border border-gray-300 focus:ring-purple-pain focus:border-purple-pain transition duration-300" required>
+                    <select class="w-full md:w-1/4 px-4 py-3 text-gray-800 rounded-md border border-gray-300 focus:ring-purple-pain focus:border-purple-pain transition duration-300">
+                        <option>Adventure</option>
+                        <option>Cultural</option>
+                        <option>Relaxation</option>
+                        <option>Honeymoon</option>
+                    </select>
+                    <button type="submit" class="w-full md:w-auto bg-purple-pain text-white font-bold py-3 px-8 rounded-md hover:bg-heavy-purple btn-hover transition duration-300">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Popular Tours Section -->
+        <section id="tours" class="py-20 bg-white fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Popular Tours</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explore our handpicked selection of top-rated adventures, crafted to ignite your wanderlust.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Taj Mahal" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-purple-pain mb-2">Golden Triangle, India</h3>
+                            <p class="text-gray-600 mb-4">Discover the vibrant culture and history of Delhi, Agra, and Jaipur in this 7-day journey through India's iconic landmarks.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-heavy-purple">$1,200</span>
+                                <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://www.purevacations.com/wp-content/uploads/2019/05/Eiffel-tour-over-Seine-river-1024x683.jpg" alt="Eiffel Tower" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-purple-pain mb-2">Parisian Romance</h3>
+                            <p class="text-gray-600 mb-4">Experience the charm of Paris with a 5-day tour, including the Eiffel Tower, Louvre, and Seine River cruises.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-heavy-purple">$950</span>
+                                <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" alt="Tokyo Streets" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-purple-pain mb-2">Tokyo Explorer</h3>
+                            <p class="text-gray-600 mb-4">Immerse yourself in Tokyo's vibrant culture with a 6-day tour of temples, modern districts, and culinary delights.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-heavy-purple">$1,500</span>
+                                <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">View Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-ice-cold text-purple-pain font-bold py-3 px-8 rounded-full hover:bg-freeze-purple btn-hover transition duration-300">Explore All Tours</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals & Discounts Parallax Section -->
+        <section class="parallax-container bg-fixed flex items-center justify-start text-white fade-in">
+            <img src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?ixlib=rb-4.0.3&auto=format&fit=crop&w=1995&q=80" alt="Amalfi Coast, Italy" class="parallax-bg">
+            <div class="relative z-10 container mx-auto px-6">
+                <div class="bg-black/40 p-10 rounded-lg max-w-xl">
+                    <h2 class="text-4xl font-bold mb-4">Exclusive Deals & Discounts</h2>
+                    <p class="text-lg mb-6">Save up to 30% on select tours this season. Book now and embark on your dream adventure!</p>
+                    <a href="#" class="inline-block bg-ice-cold text-purple-pain font-bold py-3 px-8 rounded-full hover:bg-freeze-purple btn-hover transition duration-300">View All Deals</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Find Your Perfect Tour Section -->
+        <section id="destinations" class="py-20 bg-freeze-purple/50 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Find Your Perfect Destination</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">From vibrant cities to serene landscapes, we have a destination for every traveler.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <a href="#" class="group relative overflow-hidden rounded-lg shadow-lg card-hover">
+                        <img src="https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80" alt="London" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">London</h3>
+                    </a>
+                    <a href="#" class="group relative overflow-hidden rounded-lg shadow-lg card-hover">
+                        <img src="https://images.unsplash.com/photo-1567017469553-d1b219af5831?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80" alt="Egypt" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">Egypt</h3>
+                    </a>
+                    <a href="#" class="group relative overflow-hidden rounded-lg shadow-lg card-hover">
+                        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1966&q=80" alt="Italy" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">Italy</h3>
+                    </a>
+                    <a href="#" class="group relative overflow-hidden rounded-lg shadow-lg card-hover">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Paris" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">Paris</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">What Our Travelers Say</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Hear from those who’ve explored the world with Voyage.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-freeze-purple/50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Traveler" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Emily Carter</h4>
+                                <p class="text-sm text-gray-500">London, UK</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">“Voyage made our London trip unforgettable. The guides were knowledgeable, and every detail was perfectly planned!”</p>
+                    </div>
+                    <div class="bg-freeze-purple/50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Traveler" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Michael Patel</h4>
+                                <p class="text-sm text-gray-500">Jaipur, India</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">“The Golden Triangle tour was a dream come true. The itinerary was seamless, and the support team was fantastic!”</p>
+                    </div>
+                    <div class="bg-freeze-purple/50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Traveler" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Sophie Nguyen</h4>
+                                <p class="text-sm text-gray-500">Tokyo, Japan</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">“Exploring Tokyo with Voyage was incredible. From sushi workshops to temple visits, every moment was magical.”</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Destination Section -->
+        <section id="featured" class="py-20 bg-medium-purple/20 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Featured Destination: Santorini</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover the stunning beauty of Santorini, Greece, with our exclusive 5-day getaway.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/2">
+                        <img src="https://blogassets.airtel.in/wp-content/uploads/2024/12/Greece.jpg" alt="Santorini" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                    </div>
+                    <div class="lg:w-1/2">
+                        <h3 class="text-2xl font-bold text-purple-pain mb-4">Why Santorini?</h3>
+                        <p class="text-gray-600 mb-6">Experience the iconic whitewashed buildings, breathtaking sunsets, and crystal-clear waters of Santorini. This package includes guided tours of Oia and Fira, wine tasting, and a private boat trip to the volcanic islands.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-6">
+                            <li>5 nights in a luxury hotel with caldera views</li>
+                            <li>Daily breakfast and a sunset dinner</li>
+                            <li>Guided archaeological tours</li>
+                            <li>24/7 support from our local team</li>
+                        </ul>
+                        <a href="#" class="inline-block bg-purple-pain text-white font-bold py-3 px-8 rounded-full hover:bg-heavy-purple btn-hover transition duration-300">Book Now for $1,800</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="py-20 bg-white fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-12">Why Choose Voyage?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="flex flex-col items-center card-hover p-6">
+                        <div class="flex items-center justify-center w-20 h-20 rounded-full bg-medium-purple/50 text-purple-pain mb-4">
+                            <i class="fas fa-map-marked-alt text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Expert Guides</h3>
+                        <p class="text-gray-600">Our passionate local guides bring destinations to life with insider knowledge.</p>
+                    </div>
+                    <div class="flex flex-col items-center card-hover p-6">
+                        <div class="flex items-center justify-center w-20 h-20 rounded-full bg-medium-purple/50 text-purple-pain mb-4">
+                            <i class="fas fa-shield-alt text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">100% Secure</h3>
+                        <p class="text-gray-600">Your payments and personal data are protected with top-tier security.</p>
+                    </div>
+                    <div class="flex flex-col items-center card-hover p-6">
+                        <div class="flex items-center justify-center w-20 h-20 rounded-full bg-medium-purple/50 text-purple-pain mb-4">
+                            <i class="fas fa-thumbs-up text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Best Prices</h3>
+                        <p class="text-gray-600">Enjoy premium experiences at unbeatable prices with our exclusive deals.</p>
+                    </div>
+                    <div class="flex flex-col items-center card-hover p-6">
+                        <div class="flex items-center justify-center w-20 h-20 rounded-full bg-medium-purple/50 text-purple-pain mb-4">
+                            <i class="fas fa-headset text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">24/7 Support</h3>
+                        <p class="text-gray-600">Our team is available around the clock to ensure a seamless travel experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-20 bg-freeze-purple/50 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Travel Stories & Tips</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get inspired with our latest travel articles and expert advice.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Blog Post 1" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 21, 2025</p>
+                            <h3 class="text-xl font-bold text-purple-pain mb-3">Top 10 Beach Destinations for 2025</h3>
+                            <p class="text-gray-600 mb-4">Discover the best beaches to visit this year, from Maldives to Santorini.</p>
+                            <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Blog Post 2" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 15, 2025</p>
+                            <h3 class="text-xl font-bold text-purple-pain mb-3">Hiking Tips for Beginners</h3>
+                            <p class="text-gray-600 mb-4">Essential advice for your first hiking adventure in the mountains.</p>
+                            <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="https://media.licdn.com/dms/image/v2/C5612AQEBoEnv2Nt1Kg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1550662898234?e=2147483647&v=beta&t=v5P6ZWrmZpCOV2LgT9uxo5ipwZQ9OUR0uH1QmuHoel8" alt="Blog Post 3" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 10, 2025</p>
+                            <h3 class="text-xl font-bold text-purple-pain mb-3">Cultural Etiquette for Global Travelers</h3>
+                            <p class="text-gray-600 mb-4">Learn how to respect local customs on your next international trip.</p>
+                            <a href="#" class="font-semibold text-purple-pain hover:text-heavy-purple link-hover">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-3xl font-bold text-white mb-4">Voyage</h3>
+                    <p class="text-gray-400 mb-4">Crafting unforgettable travel experiences since 2010.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-pain transition duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-pain transition duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-pain transition duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-pain transition duration-300"><i class="fab fa-pinterest text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">About Us</a></li>
+                        <li><a href="#blog" class="hover:text-purple-pain link-hover transition duration-300">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">Contact</a></li>
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Destinations</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">Europe</a></li>
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">Asia</a></li>
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">South America</a></li>
+                        <li><a href="#" class="hover:text-purple-pain link-hover transition duration-300">Africa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Subscribe</h4>
+                    <p class="text-gray-400 mb-4">Get the latest deals and travel tips straight to your inbox.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your Email" class="w-full rounded-l-md px-4 py-2 text-gray-800 focus:outline-none focus:ring-purple-pain focus:border-purple-pain transition duration-300" required>
+                        <button class="bg-purple-pain text-white px-4 rounded-r-md hover:bg-heavy-purple btn-hover transition duration-300">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>© 2025 Voyage. All Rights Reserved. Designed with ♥.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Optimized parallax effect
+            const parallaxBgs = document.querySelectorAll('.parallax-container');
+            function updateParallax() {
+                parallaxBgs.forEach(container => {
+                    const bg = container.querySelector('.parallax-bg');
+                    const rect = container.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                        const offset = scrollPercent * 20; // Reduced offset for smoother effect
+                        bg.style.transform = `translateY(${offset}%)`;
+                    }
+                });
+                requestAnimationFrame(updateParallax);
+            }
+            if (window.innerWidth > 768) { // Disable parallax on mobile for performance
+                requestAnimationFrame(updateParallax);
+            }
+
+            // Fade-in animation on scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>

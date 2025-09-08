@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name=" якому=" width=device-width, initial-scale=1.0">
+    <title>Insurtech - Your Trusted Insurance Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-orange-600">Insurtech</a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-orange-600 transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-orange-600 transition duration-300">About</a>
+                <a href="#services" class="text-gray-600 hover:text-orange-600 transition duration-300">Services</a>
+                <a href="#plans" class="text-gray-600 hover:text-orange-600 transition duration-300">Plans</a>
+                <a href="#blog" class="text-gray-600 hover:text-orange-600 transition duration-300">Blog</a>
+                <a href="#contact" class="text-gray-600 hover:text-orange-600 transition duration-300">Contact</a>
+            </div>
+            <a href="#"
+                class="hidden lg:inline-block bg-orange-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-700 transition duration-300">Get
+                a Quote</a>
+            <button id="mobile-menu-button" class="lg:hidden text-gray-600 hover:text-orange-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white py-4">
+            <a href="#home" class="block text-center py-2 text-gray-600 hover:bg-orange-50">Home</a>
+            <a href="#about" class="block text-center py-2 text-gray-600 hover:bg-orange-50">About</a>
+            <a href="#services" class="block text-center py-2 text-gray-600 hover:bg-orange-50">Services</a>
+            <a href="#plans" class="block text-center py-2 text-gray-600 hover:bg-orange-50">Plans</a>
+            <a href="#blog" class="block text-center py-2 text-gray-600 hover:bg-orange-50">Blog</a>
+            <a href="#contact" class="block text-center py-2 text-gray-600 hover:bg-orange-50">Contact</a>
+            <div class="mt-4 text-center">
+                <a href="#"
+                    class="inline-block bg-orange-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-700 transition duration-300">Get
+                    a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="bg-gray-50 py-20 lg:py-32 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                            Secure Your Future with Our Trusted Insurance Plans
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8">
+                            We provide comprehensive and affordable insurance policies to protect you, your family, and
+                            your assets. Get peace of mind with Insurtech.
+                        </p>
+                        <div class="flex justify-center lg:justify-start space-x-4">
+                            <a href="#plans"
+                                class="bg-orange-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-orange-700 transition duration-300 shadow-lg">Our
+                                Plans</a>
+                            <a href="#contact"
+                                class="bg-white text-orange-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition duration-300 border border-orange-600 shadow-lg">Contact
+                                Us</a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Insurance Agent" class="rounded-lg shadow-2xl z-10">
+                            <div
+                                class="absolute -bottom-8 -left-8 bg-white p-4 rounded-lg shadow-xl flex items-center space-x-3 z-20">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Client" class="rounded-full">
+                                <div>
+                                    <p class="font-bold">"Best insurance ever!"</p>
+                                    <p class="text-sm text-gray-500">John Doe, Happy Client</p>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute -top-8 -right-8 bg-orange-600 text-white p-6 rounded-lg shadow-xl z-20">
+                                <p class="text-3xl font-bold counter" data-target="10">0k+</p>
+                                <p>Policies Issued</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Your Quote Section -->
+        <section class="py-24 bg-gradient-to-b from-orange-50 to-white fade-in">
+            <div class="container mx-auto px-6">
+                <div
+                    class="grid lg:grid-cols-2 gap-12 items-center bg-white/70 backdrop-blur-sm rounded-2xl shadow-2xl p-10 lg:p-16 border border-orange-100">
+
+                    <!-- Left Section -->
+                    <div class="text-center lg:text-left space-y-6">
+                        <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">
+                            Free Personalized Insurance Quote
+                        </h2>
+                        <p class="text-gray-600 text-lg">
+                            Quick. Easy. No obligations. Just fill out the form and let our experts handle the rest.
+                        </p>
+                        <img src="https://www.shutterstock.com/image-photo/insurance-company-clients-take-out-260nw-2286447351.jpg"
+                            alt="Friendly Insurance Support"
+                            class="rounded-xl shadow-lg w-full max-w-sm mx-auto lg:mx-0">
+                    </div>
+
+                    <!-- Form Section -->
+                    <div class="bg-white rounded-xl p-8 shadow-md border border-gray-200">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" placeholder="John Doe"
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" placeholder="john@example.com"
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
+                            </div>
+                            <div>
+                                <label for="insurance-type" class="block text-sm font-medium text-gray-700">Type of
+                                    Insurance</label>
+                                <select id="insurance-type"
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition">
+                                    <option disabled selected>Select insurance type</option>
+                                    <option>Health Insurance</option>
+                                    <option>Car Insurance</option>
+                                    <option>Home Insurance</option>
+                                    <option>Life Insurance</option>
+                                </select>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Get My Free Quote
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Why Choose Us Section -->
+        <section id="about" class="bg-gray-50 py-20 fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">We are committed to providing the best
+                    insurance solutions with transparency and exceptional customer service.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div
+                            class="bg-orange-100 text-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-shield-alt text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Reliable Coverage</h3>
+                        <p class="text-gray-600">Our policies offer comprehensive protection against unforeseen events,
+                            giving you total peace of mind.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div
+                            class="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-headset text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">24/7 Support</h3>
+                        <p class="text-gray-600">Our dedicated support team is always available to assist you with any
+                            claims or queries, anytime.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div
+                            class="bg-orange-100 text-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-file-invoice-dollar text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Affordable Premiums</h3>
+                        <p class="text-gray-600">We offer competitive pricing and flexible payment options to fit your
+                            budget without compromising on quality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="services" class="py-20 fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-16">Getting insured with us is simple and
+                    straightforward. Follow these three easy steps.</p>
+                <div class="relative">
+                    <!-- Dotted line for desktop -->
+                    <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-gray-300"
+                        style="transform: translateY(-50%);"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="bg-white border-2 border-orange-600 text-orange-600 w-24 h-24 rounded-full flex items-center justify-center mb-6 text-3xl font-bold z-10">
+                                1</div>
+                            <h3 class="text-xl font-bold mb-3">Request a Quote</h3>
+                            <p class="text-gray-600">Fill in our simple form to get a free, no-obligation quote tailored
+                                to your needs.</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="bg-white border-2 border-orange-600 text-orange-600 w-24 h-24 rounded-full flex items-center justify-center mb-6 text-3xl font-bold z-10">
+                                2</div>
+                            <h3 class="text-xl font-bold mb-3">Choose Your Plan</h3>
+                            <p class="text-gray-600">Compare our affordable plans and choose the one that provides the
+                                best coverage for you.</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="bg-white border-2 border-orange-600 text-orange-600 w-24 h-24 rounded-full flex items-center justify-center mb-6 text-3xl font-bold z-10">
+                                3</div>
+                            <h3 class="text-xl font-bold mb-3">Get Insured</h3>
+                            <p class="text-gray-600">Finalize your policy online and get instant protection. It's that
+                                easy!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Plans Section -->
+        <section id="plans" class="bg-gray-50 py-20 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Popular Insurance Plans</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">We offer a variety of plans to suit your needs.
+                        Find the perfect one for you.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Plan Card 1 -->
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Health Insurance" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Health Insurance</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive health coverage for you and your family. Stay
+                                protected against medical emergencies.</p>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Learn More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Plan Card 2 -->
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Home Insurance" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Home Insurance</h3>
+                            <p class="text-gray-600 mb-4">Protect your home and belongings from damage, theft, and other
+                                unforeseen events.</p>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Learn More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Plan Card 3 -->
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Car Insurance" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Car Insurance</h3>
+                            <p class="text-gray-600 mb-4">Get on the road with confidence. Our car insurance plans cover
+                                accidents, theft, and more.</p>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Learn More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-20 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Have questions? We have answers. Find solutions
+                        to common queries below.</p>
+                </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="accordion-item border-b border-gray-200 py-4">
+                        <button
+                            class="accordion-header w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800">
+                            <span>What documents are required for a claim?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-4 text-gray-600">You will typically need the policy document, claim form,
+                                identity proof, and any other documents relevant to the type of claim (e.g., police
+                                report for car theft, medical bills for health claims).</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200 py-4">
+                        <button
+                            class="accordion-header w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800">
+                            <span>How can I renew my insurance policy?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-4 text-gray-600">You can easily renew your policy online through our customer
+                                portal. We will also send you renewal reminders via email and SMS before your policy
+                                expires.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200 py-4">
+                        <button
+                            class="accordion-header w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800">
+                            <span>Can I cancel my policy and get a refund?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-4 text-gray-600">Yes, you can cancel your policy. Refund eligibility depends on
+                                the terms and conditions of your policy and how long it has been active. Please refer to
+                                your policy document for details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="bg-gray-50 py-20 fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Latest Blog & News</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Stay updated with the latest news, tips, and
+                        articles from the insurance world.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog Post 1" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 21, 2025</p>
+                            <h3 class="text-xl font-bold mb-3">5 Essential Tips for Choosing the Right Health Insurance
+                            </h3>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Read More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog Post 2" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 15, 2025</p>
+                            <h3 class="text-xl font-bold mb-3">Why Life Insurance is a Crucial Part of Financial
+                                Planning</h3>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Read More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog Post 3" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">July 10, 2025</p>
+                            <h3 class="text-xl font-bold mb-3">A Guide to Understanding Your Home Insurance Policy</h3>
+                            <a href="#" class="font-semibold text-orange-600 hover:text-orange-800">Read More <i
+                                    class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="bg-orange-600 text-white fade-in">
+            <div class="container mx-auto px-6 py-20">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-center lg:text-left mb-8 lg:mb-0">
+                        <h2 class="text-3xl font-bold mb-2">Ready to Get Started?</h2>
+                        <p class="text-orange-200 text-lg">Talk to our experts today and find the perfect insurance plan
+                            for your needs.</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <a href="#"
+                            class="bg-white text-orange-600 font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl text-lg">Request
+                            a Callback</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold text-white mb-4">Insurtech</h3>
+                    <p class="text-gray-400 mb-4">Your trusted partner in securing your future. We provide reliable and
+                        affordable insurance solutions.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-600 transition duration-300"><i
+                                class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-600 transition duration-300"><i
+                                class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-600 transition duration-300"><i
+                                class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-600 transition duration-300"><i
+                                class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-orange-600 transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="hover:text-orange-600 transition duration-300">Services</a></li>
+                        <li><a href="#plans" class="hover:text-orange-600 transition duration-300">Plans</a></li>
+                        <li><a href="#blog" class="hover:text-orange-600 transition duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb引入=" Insurance</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-orange-600 transition duration-300">Health Insurance</a>
+                            </li>
+                            <li><a href="#" class="hover:text-orange-600 transition duration-300">Life Insurance</a>
+                            </li>
+                            <li><a href="#" class="hover:text-orange-600 transition duration-300">Car Insurance</a></li>
+                            <li><a href="#" class="hover:text-orange-600 transition duration-300">Home Insurance</a>
+                            </li>
+                        </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i
+                                class="fas fa-map-marker-alt mt-1 mr-3 text-orange-600"></i><span>123 Insurance St,
+                                Secure City, USA</span></li>
+                        <li class="flex items-center"><i
+                                class="fas fa-envelope mr-3 text-orange-600"></i><span>contact@insurtech.com</span></li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-3 text-orange-600"></i><span>+1
+                                (234) 567-890</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>© 2025 Insurtech. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Fade-in animation on scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Counter animation
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // The lower the slower
+
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace('k+', '');
+
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc) + 'k+';
+                    setTimeout(() => animateCounter(counter), 1);
+                } else {
+                    counter.innerText = target + 'k+';
+                }
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                })
+            }, { threshold: 0.8 });
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
+            // Accordion functionality
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = header.querySelector('i');
+
+                header.addEventListener('click', () => {
+                    // Close other open accordions
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            const otherContent = otherItem.querySelector('.accordion-content');
+                            const otherIcon = otherItem.querySelector('.accordion-header i');
+                            otherContent.style.maxHeight = null;
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current accordion
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

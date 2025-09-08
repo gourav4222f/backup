@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Digital | Premium Web Design & Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <style>
+        :root {
+            --alice-blue: #f2f7ff;
+            --alice-blue-100: #002663;
+            --periwinkle: #b2c9ff;
+            --periwinkle-100: #001a57;
+            --lavender-floral: #be99ff;
+            --amethyst: #9d71e8;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--alice-blue);
+            color: var(--alice-blue-100);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+        }
+
+        .dark-mode .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--alice-blue) 0%, var(--periwinkle) 100%);
+        }
+
+        .dark-mode .gradient-bg {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--periwinkle-100) 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(120deg, var(--alice-blue), var(--periwinkle), var(--lavender-floral));
+            background-size: 300% 300%;
+            animation: gradient 15s ease infinite;
+        }
+
+        .dark-mode .hero-gradient {
+            background: linear-gradient(120deg, var(--dark-bg), var(--periwinkle-100), var(--amethyst));
+            background-size: 300% 300%;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .ripple:hover:after {
+            width: 300px;
+            height: 300px;
+            opacity: 1;
+            transition: width 0.6s ease-out, height 0.6s ease-out, opacity 0.6s ease-out;
+        }
+
+        .marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .service-card:hover .service-icon {
+            transform: translateY(-5px);
+            filter: drop-shadow(0 5px 15px rgba(157, 113, 232, 0.4));
+        }
+
+        .process-step {
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-dark-bg transition-opacity duration-500">
+        <div class="w-24 h-24 opacity-0">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#9d71e8" d="M50,10A40,40,0,1,1,10,50,40,40,0,0,1,50,10Z" />
+                <path fill="#b2c9ff" d="M50,20A30,30,0,1,1,20,50,30,30,0,0,1,50,20Z" />
+                <path fill="#be99ff" d="M50,30A20,20,0,1,1,30,50,20,20,0,0,1,50,30Z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Floating CTA -->
+    <div id="floating-cta" class="fixed bottom-8 right-8 z-40 hidden">
+        <button
+            class="bg-amethyst text-white px-6 py-3 rounded-full shadow-lg font-medium ripple hover:bg-opacity-90 transition-all transform hover:scale-105">
+            Start Your Project
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-30 backdrop-blur-md bg-white/80 dark:bg-dark-bg/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 font-bold text-2xl flex items-center">
+                        <span class="text-amethyst">Nexus</span>
+                        <span class="dark:text-white">Digital</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#services"
+                        class="text-gray-700 dark:text-gray-300 hover:text-amethyst dark:hover:text-amethyst transition-colors">Services</a>
+                    <a href="#work"
+                        class="text-gray-700 dark:text-gray-300 hover:text-amethyst dark:hover:text-amethyst transition-colors">Work</a>
+                    <a href="#process"
+                        class="text-gray-700 dark:text-gray-300 hover:text-amethyst dark:hover:text-amethyst transition-colors">Process</a>
+                    <a href="#testimonials"
+                        class="text-gray-700 dark:text-gray-300 hover:text-amethyst dark:hover:text-amethyst transition-colors">Testimonials</a>
+                    <button id="theme-toggle"
+                        class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path id="theme-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                    <button
+                        class="bg-amethyst text-white px-5 py-2 rounded-full font-medium ripple hover:bg-opacity-90 transition-all">
+                        Contact Us
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 dark:text-gray-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-periwinkle rounded-full filter blur-3xl opacity-40">
+            </div>
+            <div
+                class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-lavender-floral rounded-full filter blur-3xl opacity-30">
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 fade-in">
+                    Crafting Digital Experiences <br> <span class="text-amethyst">That Convert</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-10 fade-in">
+                    From vision to victory — we design, build, and optimize your brand.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in">
+                    <button
+                        class="bg-amethyst text-white px-8 py-4 rounded-full text-lg font-medium ripple hover:bg-opacity-90 transition-all transform hover:scale-105">
+                        Start Your Project
+                    </button>
+                    <button
+                        class="bg-white dark:bg-dark-card text-gray-900 dark:text-white px-8 py-4 rounded-full text-lg font-medium border border-gray-200 dark:border-gray-700 ripple hover:bg-opacity-80 transition-all">
+                        Explore Our Work
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-8 h-8 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="py-16 bg-white dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Trusted by Industry Leaders</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We've partnered with innovative companies
+                    to transform their digital presence.</p>
+            </div>
+            <div class="relative overflow-hidden py-6">
+                <div class="marquee whitespace-nowrap">
+                    <div class="inline-flex items-center space-x-16">
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            TECHNOVA</div>
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            INNOVATEK</div>
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            STRATAGEM</div>
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            GLOBALVISION</div>
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            FUTURELINK</div>
+                        <div
+                            class="text-4xl font-bold text-gray-300 dark:text-gray-700 opacity-60 hover:opacity-100 transition-opacity">
+                            DIGITALFORGE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50 dark:bg-dark-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Premium Services</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Comprehensive solutions tailored to
+                    elevate your digital presence.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-amethyst bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-amethyst" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Web Design</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Stunning, user-centric designs that captivate your
+                        audience and reflect your brand identity.</p>
+                    <a href="#" class="text-amethyst font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-periwinkle bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-periwinkle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Robust, scalable websites and applications built
+                        with cutting-edge technologies.</p>
+                    <a href="#" class="text-periwinkle font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-lavender-floral bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-lavender-floral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">SEO Optimization</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Data-driven strategies to improve your search
+                        rankings and drive organic traffic.</p>
+                    <a href="#" class="text-lavender-floral font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-amethyst bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-amethyst" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Brand Identity</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Comprehensive branding that tells your unique story
+                        and resonates with your audience.</p>
+                    <a href="#" class="text-amethyst font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-periwinkle bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-periwinkle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Digital Strategy</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Strategic planning to maximize your online impact
+                        and achieve measurable results.</p>
+                    <a href="#" class="text-periwinkle font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="service-card glass-card p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="service-icon w-16 h-16 bg-lavender-floral bg-opacity-10 rounded-full flex items-center justify-center mb-6 transition-all">
+                        <svg class="w-8 h-8 text-lavender-floral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Video Production</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Engaging video content that tells your story and
+                        connects with your audience.</p>
+                    <a href="#" class="text-lavender-floral font-medium inline-flex items-center group">
+                        Learn more
+                        <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Why Choose Nexus Digital</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We combine technical excellence with
+                    creative vision to deliver exceptional results.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 rounded-2xl text-center transition-all hover:shadow-xl">
+                    <div
+                        class="w-20 h-20 bg-amethyst bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
+                        <svg class="w-10 h-10 text-amethyst" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Optimized websites that load in under 2 seconds for
+                        better engagement and SEO.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl text-center transition-all hover:shadow-xl">
+                    <div
+                        class="w-20 h-20 bg-periwinkle bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
+                        <svg class="w-10 h-10 text-periwinkle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Secure & Reliable</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Enterprise-grade security and 99.9% uptime guarantee for
+                        peace of mind.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl text-center transition-all hover:shadow-xl">
+                    <div
+                        class="w-20 h-20 bg-lavender-floral bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
+                        <svg class="w-10 h-10 text-lavender-floral" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Data-Driven</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Strategies based on analytics and user behavior to
+                        maximize conversions.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl text-center transition-all hover:shadow-xl">
+                    <div
+                        class="w-20 h-20 bg-amethyst bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
+                        <svg class="w-10 h-10 text-amethyst" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Transparent Process</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Regular updates and collaborative tools keep you
+                        involved every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-gradient-to-r from-amethyst to-lavender-floral relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-full opacity-20">
+                <div class="absolute top-10 left-1/4 w-80 h-80 bg-white rounded-full filter blur-3xl"></div>
+                <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
+            </div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your Digital Presence?</h2>
+            <p class="text-xl text-white opacity-90 mb-10">Let's create something remarkable together. Schedule a free
+                consultation with our experts.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button
+                    class="bg-white text-amethyst px-8 py-4 rounded-full text-lg font-bold ripple hover:bg-opacity-90 transition-all transform hover:scale-105">
+                    Book a Call
+                </button>
+                <button
+                    class="bg-black bg-opacity-30 text-white px-8 py-4 rounded-full text-lg font-bold border border-white border-opacity-30 ripple hover:bg-opacity-40 transition-all">
+                    Get a Proposal
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <div class="font-bold text-2xl text-white mb-6">Nexus Digital</div>
+                    <p class="mb-6">Creating digital experiences that inspire, engage, and convert for forward-thinking
+                        brands.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">E-commerce</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">SEO & Marketing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Brand Identity</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Work</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Process</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Stay Updated</h3>
+                    <p class="mb-4">Subscribe to our newsletter for industry insights and updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email"
+                            class="px-4 py-2 w-full rounded-l-lg focus:outline-none bg-gray-800 text-white">
+                        <button type="submit"
+                            class="bg-amethyst text-white px-4 py-2 rounded-r-lg font-medium">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-gray-800 mt-16 pt-8 text-sm flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">© 2023 Nexus Digital. All rights reserved.</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader animation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Preloader animation
+            gsap.fromTo('#preloader svg',
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }
+            );
+
+            setTimeout(() => {
+                gsap.to('#preloader', {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => {
+                        document.getElementById('preloader').style.display = 'none';
+                    }
+                });
+            }, 1500);
+
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const body = document.body;
+
+            // Check for saved theme preference
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeIcon.setAttribute('d', 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+
+                if (isDarkMode) {
+                    themeIcon.setAttribute('d', 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.setAttribute('d', 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Floating CTA
+            window.addEventListener('scroll', function () {
+                const floatingCta = document.getElementById('floating-cta');
+                if (window.scrollY > 500) {
+                    floatingCta.style.display = 'block';
+                    gsap.fromTo(floatingCta,
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.5 }
+                    );
+                } else {
+                    floatingCta.style.display = 'none';
+                }
+            });
+
+            // Hero animations
+            gsap.from('.fade-in', {
+                duration: 1,
+                opacity: 0,
+                y: 30,
+                stagger: 0.2,
+                delay: 1.5,
+                ease: "power2.out"
+            });
+
+            // Service card animations on scroll
+            gsap.utils.toArray('.service-card').forEach(card => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Why choose us animations
+            gsap.utils.toArray('.pulse').forEach(icon => {
+                gsap.from(icon, {
+                    scrollTrigger: {
+                        trigger: icon,
+                        start: "top 90%"
+                    },
+                    scale: 0.5,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.8)"
+                });
+            });
+
+            // Marquee animation
+            const marquee = document.querySelector('.marquee');
+            gsap.to(marquee, {
+                x: '-100%',
+                duration: 20,
+                repeat: -1,
+                ease: "none"
+            });
+
+            // Ripple effect
+            document.querySelectorAll('.ripple').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    const x = e.clientX - e.target.offsetLeft;
+                    const y = e.clientY - e.target.offsetTop;
+
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple-effect');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

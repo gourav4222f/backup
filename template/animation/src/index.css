@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.Milestones-active{
+    @apply bg-red-900 w-14
+}
+.Milestones-active-text{
+    @apply text-red-600/90
+}
